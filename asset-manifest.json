@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/just-digital-challenge/static/js/main.3976be99.chunk.js",
-    "main.js.map": "/just-digital-challenge/static/js/main.3976be99.chunk.js.map",
+    "main.js": "/just-digital-challenge/static/js/main.e71d24ec.chunk.js",
+    "main.js.map": "/just-digital-challenge/static/js/main.e71d24ec.chunk.js.map",
     "runtime-main.js": "/just-digital-challenge/static/js/runtime-main.767be15e.js",
     "runtime-main.js.map": "/just-digital-challenge/static/js/runtime-main.767be15e.js.map",
-    "static/js/2.0e791710.chunk.js": "/just-digital-challenge/static/js/2.0e791710.chunk.js",
-    "static/js/2.0e791710.chunk.js.map": "/just-digital-challenge/static/js/2.0e791710.chunk.js.map",
+    "static/js/2.4cbd737a.chunk.js": "/just-digital-challenge/static/js/2.4cbd737a.chunk.js",
+    "static/js/2.4cbd737a.chunk.js.map": "/just-digital-challenge/static/js/2.4cbd737a.chunk.js.map",
     "index.html": "/just-digital-challenge/index.html",
-    "static/js/2.0e791710.chunk.js.LICENSE.txt": "/just-digital-challenge/static/js/2.0e791710.chunk.js.LICENSE.txt",
+    "static/js/2.4cbd737a.chunk.js.LICENSE.txt": "/just-digital-challenge/static/js/2.4cbd737a.chunk.js.LICENSE.txt",
     "static/media/shop.ea82c2d7.svg": "/just-digital-challenge/static/media/shop.ea82c2d7.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.767be15e.js",
-    "static/js/2.0e791710.chunk.js",
-    "static/js/main.3976be99.chunk.js"
+    "static/js/2.4cbd737a.chunk.js",
+    "static/js/main.e71d24ec.chunk.js"
   ]
 }
