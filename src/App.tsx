@@ -9,7 +9,7 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.REACT_APP_URL}>
           <Routes />
         </BrowserRouter>
       </Provider>
