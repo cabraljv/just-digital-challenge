@@ -2,7 +2,7 @@
 
 ## Demo
 
-Para visualizar uma demo basta clicar <a href="https://cabraljv.github.io/pipefy">aqui</a>
+Para visualizar uma demo basta clicar <a href="https://cabraljv.github.io/just-digital-challenge/">aqui</a>
 
 
 ## Como executar
