@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/just-digital-challenge/static/js/main.76266dd9.chunk.js",
-    "main.js.map": "/just-digital-challenge/static/js/main.76266dd9.chunk.js.map",
+    "main.js": "/just-digital-challenge/static/js/main.942c3ed7.chunk.js",
+    "main.js.map": "/just-digital-challenge/static/js/main.942c3ed7.chunk.js.map",
     "runtime-main.js": "/just-digital-challenge/static/js/runtime-main.767be15e.js",
     "runtime-main.js.map": "/just-digital-challenge/static/js/runtime-main.767be15e.js.map",
     "static/js/2.7a77b4bb.chunk.js": "/just-digital-challenge/static/js/2.7a77b4bb.chunk.js",
@@ -13,6 +13,6 @@
   "entrypoints": [
     "static/js/runtime-main.767be15e.js",
     "static/js/2.7a77b4bb.chunk.js",
-    "static/js/main.76266dd9.chunk.js"
+    "static/js/main.942c3ed7.chunk.js"
   ]
 }
