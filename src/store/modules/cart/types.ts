@@ -7,6 +7,8 @@ export interface Product {
   title: string;
   description: string;
   brand: string;
+  memory: string;
+  chipType: string;
   quantity: number;
   buy_units: number;
 }

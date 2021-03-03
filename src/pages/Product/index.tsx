@@ -52,26 +52,46 @@ const Product: React.FC = () => {
         <div className="content">
           {product && (
             <div className="product-data">
-              <img src={product.picture} alt="" />
-              <div className="info">
-                <div className="header">
-                  <h1>{product.title}</h1>
-                  <span>
-                    <p>{product.quantity} disponíveis</p>
-                  </span>
-                </div>
-                <p className="description">{product.description}</p>
-                <div className="footer">
-                  <div className="price">
-                    <span className="price-value">
-                      R$ <span>{formated_price}</span>
+              <div className="product-top">
+                <img src={product.picture} alt="" />
+                <div className="info">
+                  <div className="header">
+                    <h1>{product.title}</h1>
+                    <span>
+                      <p>{product.quantity} disponíveis</p>
                     </span>
                   </div>
-                  <button type="button" onClick={() => setAddOpen(true)}>
-                    <TiShoppingCart size={25} />
-                    <p>ADICIONAR AO CARRINHO</p>
-                  </button>
+                  <div className="specs">
+                    <ul>
+                      <li>
+                        <span>Memória:</span>
+                        {product.memory}
+                      </li>
+                      <li>
+                        <span>Marca:</span>
+                        {product.brand}
+                      </li>
+                      <li>
+                        <span>Tipo de chip:</span>
+                        {product.chipType}
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="footer">
+                    <div className="price">
+                      <span className="price-value">
+                        R$ <span>{formated_price}</span>
+                      </span>
+                    </div>
+                    <button type="button" onClick={() => setAddOpen(true)}>
+                      <TiShoppingCart size={25} />
+                      <p>ADICIONAR AO CARRINHO</p>
+                    </button>
+                  </div>
                 </div>
+              </div>
+              <div className="product-bottom">
+                <p className="description">{product.description}</p>
               </div>
             </div>
           )}

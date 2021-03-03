@@ -13,18 +13,36 @@ export const Container = styled.div`
       margin: 30px 0;
       display: flex;
       justify-content: space-between;
+      flex-direction: column;
+      div.product-top {
+        display: flex;
+        @media (max-width: 720px) {
+          flex-direction: column;
+          img {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10px;
+          }
+        }
+        div.specs {
+          ul {
+            li {
+              span {
+                font-weight: bold;
+                padding-right: 10px;
+              }
+            }
+          }
+        }
+      }
+      div.product-bottom {
+        margin-top: 10px;
+      }
       img {
         width: 40%;
         height: 100%;
       }
-      @media (max-width: 720px) {
-        flex-direction: column;
-        img {
-          width: 100%;
-          height: 100%;
-          margin-bottom: 10px;
-        }
-      }
+
       div.info {
         flex: 1;
         display: flex;
