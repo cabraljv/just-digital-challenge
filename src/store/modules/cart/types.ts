@@ -8,6 +8,7 @@ export interface Product {
   description: string;
   brand: string;
   quantity: number;
+  buy_units: number;
 }
 
 export interface ApplicationState {

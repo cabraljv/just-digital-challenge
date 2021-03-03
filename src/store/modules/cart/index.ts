@@ -4,11 +4,10 @@ function reducer(state: Product[] = [], action: ApplicationAction) {
   switch (action.type) {
     case 'ADD_ITEM': {
       const already_exists = state.find((atual) => atual.id === action.item.id);
-
       if (already_exists) {
         const aux = state.map((item) =>
           item.id === action.item.id
-            ? { ...item, quantity: item.quantity + action.item.quantity }
+            ? { ...item, buy_units: item.buy_units + action.item.buy_units }
             : item
         );
         return aux;
@@ -20,10 +19,10 @@ function reducer(state: Product[] = [], action: ApplicationAction) {
       if (!cart_item) {
         return state;
       }
-      if (cart_item.quantity > action.item.quantity) {
+      if (cart_item.buy_units > action.item.buy_units) {
         const aux = state.map((item) =>
           item.id === action.item.id
-            ? { ...item, quantity: item.quantity - action.item.quantity }
+            ? { ...item, buy_units: item.buy_units - action.item.buy_units }
             : item
         );
         return aux;

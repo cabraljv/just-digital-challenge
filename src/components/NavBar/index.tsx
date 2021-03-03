@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { Container, CartContainer } from './styles';
 import shop_icon from '../../assets/icons/shop.svg';
@@ -12,12 +12,7 @@ interface CartProps {
 
 const CartItem: React.FC<CartProps> = ({ product }) => {
   const dispatch = useDispatch();
-  const handleRemove = useCallback(() => {
-    dispatch({
-      type: 'REMOVE_ITEM',
-      item: product,
-    });
-  }, [dispatch, product]);
+
   const formatted_title = useMemo(
     () =>
       product.title.length > 20
@@ -25,18 +20,58 @@ const CartItem: React.FC<CartProps> = ({ product }) => {
         : product.title,
     [product.title]
   );
+
+  const onChangeUnits = useCallback(
+    (e: string) => {
+      const units = parseInt(e, 10);
+      if (units === 0) {
+        dispatch({
+          type: 'REMOVE_ITEM',
+          item: product,
+        });
+      }
+      if (!units) {
+        return;
+      }
+      if (units > product.quantity) {
+        return;
+      }
+      if (units < product.buy_units) {
+        dispatch({
+          type: 'REMOVE_ITEM',
+          item: { ...product, buy_units: product.buy_units - units },
+        });
+      } else {
+        dispatch({
+          type: 'ADD_ITEM',
+          item: { ...product, buy_units: units - product.buy_units },
+        });
+      }
+    },
+    [dispatch, product]
+  );
+
   return (
     <CartContainer>
       <div className="product-info">
         <img src={product.picture} alt="" />
         <div className="product-texts">
           <p className="title">{formatted_title}</p>
-          <p className="amount">Quantidadee: {product.quantity} unid</p>
+          <p className="amount">Quantidade: {product.buy_units} unid</p>
         </div>
       </div>
-      <button type="button" onClick={handleRemove}>
-        REMOVER
-      </button>
+      <div className="units">
+        <input
+          type="number"
+          name="units"
+          id="units"
+          value={product.buy_units}
+          min={0}
+          max={product.quantity}
+          onChange={(e) => onChangeUnits(e.target.value)}
+        />
+        <p>unidades</p>
+      </div>
     </CartContainer>
   );
 };
@@ -49,14 +84,21 @@ const NavBar: React.FC<Props> = ({ items }) => {
   const [cartOpen, setCartOpen] = useState(false);
   const history = useHistory();
 
+  const total_cart = useMemo(() => {
+    let aux = 0;
+    // eslint-disable-next-line no-return-assign
+    items.forEach((atual) => (aux += atual.buy_units * atual.price));
+    return aux;
+  }, [items]);
+
   return (
     <Container cart_open={cartOpen}>
-      <a href="/">
+      <Link to="/">
         <img
           src="https://justdigital.com.br/just-logo.2bbdba5a.png"
           alt="Just Digital"
         />
-      </a>
+      </Link>
       <ul>
         <li>
           <button type="button" onClick={() => setCartOpen(!cartOpen)}>
@@ -70,9 +112,14 @@ const NavBar: React.FC<Props> = ({ items }) => {
           </button>
           <div className="cart-list">
             <ul>
-              {items.map((item) => (
-                <CartItem key={item.id} product={item} />
-              ))}
+              <>
+                {items.map((item) => (
+                  <CartItem key={item.id} product={item} />
+                ))}
+                <p className="total-value">
+                  R$ <span>{total_cart}</span>
+                </p>
+              </>
               {items.length === 0 && <p>Nenhum produto no carrinho</p>}
 
               <li>

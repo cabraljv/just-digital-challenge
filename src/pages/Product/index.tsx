@@ -6,16 +6,7 @@ import api from '../../services/api';
 import { Container } from './styles';
 import HomeProduct from '../../components/HomeProduct';
 import AddProduct from '../../components/AddProduct';
-
-interface IProduct {
-  id: number;
-  picture: string;
-  price: number;
-  title: string;
-  description: string;
-  brand: string;
-  quantity: number;
-}
+import { Product as IProduct } from '../../store/modules/cart/types';
 
 interface Params {
   id: string;

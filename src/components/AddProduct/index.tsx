@@ -1,25 +1,38 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import { TiShoppingCart } from 'react-icons/ti';
+import { connect, useDispatch } from 'react-redux';
+import { Product } from '../../store/modules/cart/types';
 import { Container } from './styles';
-
-interface Product {
-  id: number;
-  picture: string;
-  price: number;
-  title: string;
-  description: string;
-  brand: string;
-  quantity: number;
-}
 
 interface Props {
   active?: boolean;
   product: Product;
+  items: Product[];
   onCancel: () => void;
 }
 
-const AddProduct: React.FC<Props> = ({ active, product, onCancel }) => {
+const AddProduct: React.FC<Props> = ({ active, product, onCancel, items }) => {
   const [units, setUnits] = useState(1);
+
+  const dispatch = useDispatch();
+
+  const handleAddCart = useCallback(() => {
+    const item_exists = items.find((item) => item.id === product.id);
+    if (item_exists) {
+      if (item_exists.buy_units + units > item_exists.quantity) {
+        // eslint-disable-next-line no-alert
+        alert('Quantidade máxima de estoque exedida');
+        return;
+      }
+    }
+
+    dispatch({
+      type: 'ADD_ITEM',
+      item: { ...product, buy_units: units },
+    });
+    onCancel();
+  }, [dispatch, product, units, onCancel, items]);
+
   const formated_price = useMemo(() => {
     return `${product.price.toFixed(2)}`.replace('.', ',');
   }, [product.price]);
@@ -57,7 +70,6 @@ const AddProduct: React.FC<Props> = ({ active, product, onCancel }) => {
                 type="number"
                 name="units"
                 id="units"
-                defaultValue={1}
                 value={units}
                 min={1}
                 max={product.quantity}
@@ -74,7 +86,7 @@ const AddProduct: React.FC<Props> = ({ active, product, onCancel }) => {
           <button type="button" onClick={onCancel}>
             Cancelar
           </button>
-          <button type="button">
+          <button type="button" onClick={handleAddCart}>
             <TiShoppingCart size={18} />
             <p>ADICIONAR AO CARRINHO</p>
           </button>
@@ -84,4 +96,6 @@ const AddProduct: React.FC<Props> = ({ active, product, onCancel }) => {
   );
 };
 
-export default AddProduct;
+export default connect((state: Product[]) => ({
+  items: state,
+}))(AddProduct);

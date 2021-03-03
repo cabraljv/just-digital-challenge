@@ -118,6 +118,17 @@ export const Container = styled.nav<Props>`
       border-radius: 0 0 30px 30px;
       padding-top: 30px;
       z-index: -10;
+      p.total-value {
+        padding-top: 5px;
+        font-size: 0.9rem;
+        display: flex;
+        span {
+          font-size: 1.2rem;
+          margin-left: 2px;
+          margin-top: -2px;
+          font-weight: bold;
+        }
+      }
       button.finish {
         margin-top: 10px;
         color: ${theme.primary};
