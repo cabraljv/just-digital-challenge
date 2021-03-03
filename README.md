@@ -43,5 +43,12 @@ yarn test
 ```
 
 
+## Tecnologias utilizadas
+- TypeScript
+- Jest
+- Styled Components
+- React Router
+- Redux
+
 
 > Projeto desenvolvido por João Victor Cabral como parte do processo seletivo da Just Digital
