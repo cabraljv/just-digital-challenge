@@ -1,17 +1,56 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
 import { Container, CartContainer } from './styles';
 import shop_icon from '../../assets/icons/shop.svg';
+import { Product } from '../../store/modules/cart/types';
 
-const NavBar: React.FC = () => {
+interface CartProps {
+  product: Product;
+}
+
+const CartItem: React.FC<CartProps> = ({ product }) => {
+  const dispatch = useDispatch();
+  const handleRemove = useCallback(() => {
+    dispatch({
+      type: 'REMOVE_ITEM',
+      item: product,
+    });
+  }, [dispatch, product]);
+  const formatted_title = useMemo(
+    () =>
+      product.title.length > 20
+        ? `${product.title.substring(0, 20)}...`
+        : product.title,
+    [product.title]
+  );
+  return (
+    <CartContainer>
+      <div className="product-info">
+        <img src={product.picture} alt="" />
+        <div className="product-texts">
+          <p className="title">{formatted_title}</p>
+          <p className="amount">Quantidadee: {product.quantity} unid</p>
+        </div>
+      </div>
+      <button type="button" onClick={handleRemove}>
+        REMOVER
+      </button>
+    </CartContainer>
+  );
+};
+
+interface Props {
+  items: Product[];
+}
+
+const NavBar: React.FC<Props> = ({ items }) => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const history = useHistory();
 
   return (
-    <Container cart_open={cartOpen} menu_open={menuOpen}>
+    <Container cart_open={cartOpen}>
       <a href="/">
         <img
           src="https://justdigital.com.br/just-logo.2bbdba5a.png"
@@ -25,13 +64,16 @@ const NavBar: React.FC = () => {
             <div className="cart">
               <img src={shop_icon} alt="sacola" />
               <span className="cart-items">
-                <p>3</p>
+                <p>{items.length}</p>
               </span>
             </div>
           </button>
           <div className="cart-list">
             <ul>
-              <p>Nenhum produto no carrinho</p>
+              {items.map((item) => (
+                <CartItem key={item.id} product={item} />
+              ))}
+              {items.length === 0 && <p>Nenhum produto no carrinho</p>}
 
               <li>
                 <button
@@ -50,5 +92,6 @@ const NavBar: React.FC = () => {
     </Container>
   );
 };
-
-export default NavBar;
+export default connect((state: Product[]) => ({
+  items: state,
+}))(NavBar);
