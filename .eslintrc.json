@@ -60,7 +60,8 @@
       "react/prop-types": [
           "off"
       ],
-      "camelcase": "off"
+      "camelcase": "off",
+      "no-return-assign": "off"
     },
     "settings": {
       "import/resolver": {
