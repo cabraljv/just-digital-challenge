@@ -18,7 +18,7 @@ O site ficará disponível em http://localhost:3001
 
 Para rodar com o npm ou yarn, basta:
 ```sh
-#Com o npm
+# Com o npm
 npm install
 npm run start
 
@@ -26,14 +26,14 @@ npm run start
 yarn
 yarn start
 ```
-O site ficará disponível em http://localhost:300
+O site ficará disponível em http://localhost:3000
 
 
 ## Como rodar os testes
 
 Para rodar os testes basta:
 ```sh
-#Com o npm
+# Com o npm
 npm install
 npm run test
 
