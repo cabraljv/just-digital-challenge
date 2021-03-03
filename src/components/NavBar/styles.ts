@@ -33,6 +33,8 @@ export const Container = styled.nav<Props>`
   ul {
     display: flex;
     align-items: center;
+    position: absolute;
+    right: 20px;
     li:first-of-type {
       button {
         p {
@@ -40,33 +42,27 @@ export const Container = styled.nav<Props>`
         }
       }
     }
-  }
-
-  ul:last-of-type {
-    position: absolute;
-    right: 20px;
-    li:first-of-type {
-      div.cart {
+    div.cart {
+      display: flex;
+      span.cart-items {
+        background: ${theme.primary};
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
         display: flex;
-        span.cart-items {
-          background: ${theme.primary};
-          width: 15px;
-          height: 15px;
-          border-radius: 15px;
-          display: flex;
-          position: relative;
-          left: -15px;
-          bottom: -10px;
-          p {
-            color: #fff;
-            margin: auto;
-            font-size: 10px;
-            padding-left: 4px;
-          }
+        position: relative;
+        left: -15px;
+        bottom: -10px;
+        p {
+          color: #fff;
+          margin: auto;
+          font-size: 10px;
+          padding-left: 4px;
         }
       }
     }
   }
+
   button {
     display: flex;
     align-items: center;
@@ -75,33 +71,6 @@ export const Container = styled.nav<Props>`
     border: 0;
   }
 
-  div.menu-list {
-    background: #fff;
-    padding: 10px;
-    width: 150px;
-    border-radius: 10px;
-    position: absolute;
-    margin-left: -75px;
-    padding-top: 40px;
-    display: ${(props) => (props.menu_open ? 'flex' : 'none')};
-    ul {
-      display: flex;
-      flex-direction: column;
-      li {
-        padding: 5px 0;
-        button.sales {
-          cursor: pointer;
-          font-size: 14px;
-        }
-        button.sales:hover {
-          color: ${theme.primary};
-        }
-        button.exit:hover {
-          color: #ef3030;
-        }
-      }
-    }
-  }
   div.cart-list {
     position: absolute;
     min-width: 200px;

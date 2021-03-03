@@ -13,6 +13,7 @@ interface CartProps {
 const CartItem: React.FC<CartProps> = ({ product }) => {
   const dispatch = useDispatch();
 
+  // Título limitado a 20 caracteres para manter o layout
   const formatted_title = useMemo(
     () =>
       product.title.length > 20
@@ -21,6 +22,7 @@ const CartItem: React.FC<CartProps> = ({ product }) => {
     [product.title]
   );
 
+  // ao adicionar ou remover um item no input
   const onChangeUnits = useCallback(
     (e: string) => {
       const units = parseInt(e, 10);
@@ -57,7 +59,7 @@ const CartItem: React.FC<CartProps> = ({ product }) => {
         <img src={product.picture} alt="" />
         <div className="product-texts">
           <p className="title">{formatted_title}</p>
-          <p className="amount">Quantidade: {product.buy_units} unid</p>
+          <p className="amount">Disponível: {product.quantity} unid</p>
         </div>
       </div>
       <div className="units">
@@ -84,9 +86,9 @@ const NavBar: React.FC<Props> = ({ items }) => {
   const [cartOpen, setCartOpen] = useState(false);
   const history = useHistory();
 
+  // Soma total do valor de todos os items no carrinho
   const total_cart = useMemo(() => {
     let aux = 0;
-    // eslint-disable-next-line no-return-assign
     items.forEach((atual) => (aux += atual.buy_units * atual.price));
     return aux;
   }, [items]);

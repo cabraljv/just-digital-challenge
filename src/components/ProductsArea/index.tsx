@@ -17,7 +17,9 @@ interface APIResponse {
 
 const ProductsArea: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+
   useEffect(() => {
+    // Carregando produtos da API
     async function getProducts() {
       const response = await api.get<APIResponse>('/');
       if (response.status === 200) {
