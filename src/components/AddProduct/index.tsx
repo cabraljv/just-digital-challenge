@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useMemo, useState, useCallback } from 'react';
 import { TiShoppingCart } from 'react-icons/ti';
 import { connect, useDispatch } from 'react-redux';
@@ -16,6 +17,7 @@ const AddProduct: React.FC<Props> = ({ active, product, onCancel, items }) => {
 
   const dispatch = useDispatch();
 
+  // Ao adicionar algum item ao carrinho
   const handleAddCart = useCallback(() => {
     const item_exists = items.find((item) => item.id === product.id);
     if (item_exists) {
@@ -40,6 +42,7 @@ const AddProduct: React.FC<Props> = ({ active, product, onCancel, items }) => {
     return `${(product.price * units).toFixed(2)}`.replace('.', ',');
   }, [product.price, units]);
 
+  // Ao alterar o número de unidades no input
   const onChangeUnits = useCallback(
     (e: string) => {
       const in_number = parseInt(e, 10);
@@ -68,14 +71,14 @@ const AddProduct: React.FC<Props> = ({ active, product, onCancel, items }) => {
             <div className="units">
               <input
                 type="number"
-                name="units"
-                id="units"
+                name="product-units"
+                id="product-units"
                 value={units}
                 min={1}
                 max={product.quantity}
                 onChange={(e) => onChangeUnits(e.target.value)}
               />
-              <p>unidades</p>
+              <label htmlFor="product-units">unidades</label>
             </div>
             <p className="total-product">
               Total do produto: <span>R${formated_total_price}</span>
